@@ -6,7 +6,7 @@ REMOVE_PACKAGE = '-e .'
 
 def get_requirements() ->List[str] :
     with open(requirement_file_name) as requirement_file: #default mode-r
-        requirement_list = requirement_file.readline() #readline - new line will be printed in next line number
+        requirement_list = requirement_file.readlines() #readline - new line will be printed in next line number
     #for removing hidden /n file
     requirement_list = [requirement_name.replace('\n',"") for requirement_name in requirement_list] 
     
@@ -23,5 +23,5 @@ setup(name='Insurance',
       author='Harshad deshmukh',
       author_email='deshmukhharshad@ymail.com',
       packages= find_packages(),
-      install_requires = get_requirements()
+      install_requires = get_requirements(),
       )
