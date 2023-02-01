@@ -2,8 +2,9 @@ from Insurance.logger import logging
 from Insurance.exception import InsuranceException
 import os
 import sys
-from Insurance.utils import get_collection_as_dataframe
+#from Insurance.utils import get_collection_as_dataframe
 from data_dump import DATABASE_NAME, COLLECTION_NAME
+from Insurance.entity.config_entity import TrainingPipelineConfig,DataIngestionConfig
 
 #def test_logger_and_exception():
     #try:
@@ -23,8 +24,10 @@ if __name__ == '__main__':
     try:
         #start_training_pipeline()
         #test_logger_and_exception()
-        get_collection_as_dataframe(database_name= DATABASE_NAME , collection_name = COLLECTION_NAME)
-        
+        #get_collection_as_dataframe(database_name= DATABASE_NAME , collection_name = COLLECTION_NAME)
+        training_pipeline_config = TrainingPipelineConfig()
+        data_ingestion_config = DataIngestionConfig(train_pipeline_config = training_pipeline_config)
+        print(data_ingestion_config.to_dict())
         
     except Exception as e:
         print(e)
