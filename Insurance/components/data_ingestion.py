@@ -17,7 +17,7 @@ class DataIngestion: # data divide into train,test and validate
     
     def __init__(self, data_ingestion_config : config_entity.DataIngestionConfig):
         try:
-            print('Intialzing data_ingestion_config variable')
+            #Intialzing data_ingestion_config variable
             self.data_ingestion_config = data_ingestion_config   
         except Exception as e:
             raise InsuranceException(e,sys)
@@ -59,7 +59,7 @@ class DataIngestion: # data divide into train,test and validate
                 test_df.to_csv(path_or_buf=self.data_ingestion_config.test_file_path, index=False, header=True)
                 
                 
-                #Prepare artifact folder
+                #Prepare artifact folder in dataclass format
                 data_ingestion_artifact = artifacts_entity.DataIngestionArtifact(
                     feature_store_file_path= self.data_ingestion_config.feature_store_file_path,
                     train_file_path = self.data_ingestion_config.train_file_path,
