@@ -80,7 +80,8 @@ def save_numpy_array_data(file_path :str, array : np.array):
     
 def load_numpy_array_data(file_path:str)->np.array:
     try:
-        with open(file_path, "rb") as file_obj:
-            np.load(file_obj)
+        #with open(file_path, "rb") as file_obj:
+        np.load(file_path)
+        
     except Exception as e:
         raise InsuranceException(e,sys)

@@ -10,6 +10,8 @@ TRAIN_FILE_NAME = 'train.csv'
 TEST_FILE_NAME = 'test.csv'
 TRANSFORM_OBJECT_FILE_NAME = "transformer.pkl"
 TARGET_ENCODER_OBJECT_FILE_NAME = "target_encoder.pkl"
+MODEL_FILE_NAME = "model.pkl"
+
 
 
 
@@ -56,10 +58,21 @@ class DataTransformationConfig():
     def __init__(self, training_pipeline_config : TrainingPipelineConfig):
         self.data_transformation_dir = os.path.join(training_pipeline_config.artifact_dir, 'data_transformation')
         self.transform_object_path = os.path.join(self.data_transformation_dir ,"transformer", TRANSFORM_OBJECT_FILE_NAME)
-        self.transformed_train_path = os.path.join(self.data_transformation_dir ,"transformed",TRAIN_FILE_NAME.replace("csv","npz"))
-        self.transformed_test_path = os.path.join(self.data_transformation_dir,"transformed", TEST_FILE_NAME.replace("csv","npz"))
+        self.transformed_train_path = os.path.join(self.data_transformation_dir ,"transformed",TRAIN_FILE_NAME.replace("csv","npy"))
+        self.transformed_test_path = os.path.join(self.data_transformation_dir,"transformed", TEST_FILE_NAME.replace("csv","npy"))
         self.target_encoder_path = os.path.join(self.data_transformation_dir,"target_encoder", TARGET_ENCODER_OBJECT_FILE_NAME)
                 
-            
+class ModelTrainerConfig:
+    
+    def __init__(self, training_pipeline_config : TrainingPipelineConfig):
+        self.model_trainer_dir = os.path.join(training_pipeline_config.artifact_dir, "model_trainer")
+        self.model_path = os.path.join(self.model_trainer_dir, "model", MODEL_FILE_NAME)
+        self.expected_score = 0.7
+        self.overfitting_threshold = 0.3
+        
+class ModelEvaluationConfig:
+    
+    def __init__(self, training_pipeline_config : TrainingPipelineConfig):
+        self.change_threshold = 0.01            
     
 
